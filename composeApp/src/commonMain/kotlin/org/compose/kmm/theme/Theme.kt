@@ -10,11 +10,16 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.InternalComposeApi
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.LocalSystemTheme
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalViewConfiguration
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -109,6 +114,7 @@ internal fun AppTheme(
 ) {
     val systemIsDark = isSystemInDarkTheme()
     val isDarkState = remember { mutableStateOf(systemIsDark) }
+
     CompositionLocalProvider(
         LocalThemeIsDark provides isDarkState
     ) {
@@ -124,6 +130,13 @@ internal fun AppTheme(
         )
     }
 }
+
+//@OptIn(InternalComposeApi::class)
+//@Composable
+//internal fun setStatusBarColor(color: Color) {
+//    val view = LocalViewConfiguration.current
+//    if (!view.)
+//}
 
 @Composable
 internal expect fun SystemAppearance(isDark: Boolean)

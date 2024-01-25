@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
 }
 
+val ktorVersion = "2.3.7"
+
 kotlin {
     androidTarget {
         compilations.all {
@@ -47,6 +49,13 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.datetime)
             implementation(libs.multiplatformSettings)
+
+//            implementation("io.ktor:ktor-client-core")
+            implementation("io.ktor:ktor-client-core:${ktorVersion}")
+            implementation("io.ktor:ktor-client-content-negotiation:${ktorVersion}")
+            implementation("io.ktor:ktor-client-logging:${ktorVersion}")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:${ktorVersion}")
+            implementation("io.ktor:ktor-client-android:${ktorVersion}")
         }
 
         commonTest.dependencies {
@@ -64,7 +73,6 @@ kotlin {
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
-
     }
 }
 
